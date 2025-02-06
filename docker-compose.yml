@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  password-generator:
+    build: .
+    ports:
+      - "8000:8000"
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - OAUTH_PROVIDER_URL=https://oauth.example.com
+      - OAUTH_CLIENT_ID=your-client-id
+      - OAUTH_CLIENT_SECRET=your-client-secret
+      - DB_PATH=/app/data/passwords.db
+    restart: unless-stopped
